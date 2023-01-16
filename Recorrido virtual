@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recorrido Virtual de la Antártida</title>
+  <style>
+    /* Estilos para centrar las imágenes */
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Estilos para las leyendas */
+    .caption {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <img src="img1.jpg" id="slide" width="800" height="600">
+    <div class="caption" id="caption">Bienvenidos a la Antártida. Aquí comenzará tu viaje por este fascinante continente</div>
+  </div>
+
+  <script>
+    // Array de imágenes y leyendas
+    var images = [
+      ["img1.jpg", "Bienvenidos a la Antártida. Aquí comenzará tu viaje por este fascinante continente"],
+      ["img2.jpg", "La Antártida es el sexto continente de la Tierra, y alberga interesantes habitantes y flora virgen"]
+    ];
+
+    // Variables para la transición de imágenes
+    var i = 0;
+    var caption = document.getElementById("caption");
+    var slide = document.getElementById("slide");
+
+    // Función para cambiar de imagen cada 5 segundos
+    setInterval(function(){
+      slide.src = images[i][0];
+      caption.innerHTML = images[i][1];
+      i++;
+      if (i >= images.length) {
+        i = 0;
+      }
+    }, 5000);
+  </script>
+
+<div id="map"></div>
+<script>
+      function initMap() {
+        var antartida = {lat: -78.5, lng: -106.5};
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 4, center: antartida});
+        var marker = new google.maps.Marker({position: antartida, map: map});
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script
+</script>
+  <script>
+    // Añade la funcionalidad de ampliación de imágenes al hacer clic en la imagen
+    slide.onclick = function() {
+      var modal = document.createElement("div");
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.background = "rgba(0, 0, 0, 0.8)";
+      modal.style.zIndex = "999"; 
+  var modalImg = document.createElement("img");
+  modalImg.src = slide.src;
+  modalImg.style.maxWidth = "90%";
+  modalImg.style.maxHeight = "90%";
+  modalImg.style.margin = "auto";
+  modalImg.style.display = "block";
+  modalImg.style.position = "relative";
+  modalImg.style.top = "50%";
+  modalImg.style.transform = "translateY(-50%)";
+
+  modal.appendChild(modalImg);
+  document.body.appendChild(modal);
+
+  modal.onclick = function() {
+    modal.remove();
+  }
+}
+  </script> 
+</body>
+ </html>
+ ```
+
